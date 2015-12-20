@@ -82,6 +82,12 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- LIQUIBASE -->
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+		</dependency>
+
 		<!-- Unit Test -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

@@ -9,8 +9,6 @@
 	<%@ include file="/WEB-INF/views/common/includeCss.jsp" %>
 	<%@ include file="/WEB-INF/views/common/includeJavascript.jsp" %>
 
-    <!-- The fav icon -->
-    <link rel="shortcut icon" href="img/favicon.ico">
 
 	<title><tiles:insertAttribute name="title" /></title>
 </head>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sec="http://www.springframework.org/schema/security"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <sec:http pattern="/resources/**" security="none"/>
+    <sec:http auto-config="true" use-expressions="true">
+        <sec:session-management />
+        <!-- (1) -->
+        <sec:form-login
+            login-page="/login"
+            authentication-failure-url="/login?error=true"
+            login-processing-url="/authenticate" username-parameter="j_username"
+             password-parameter="j_password" />
+        <!-- (2) -->
+        <sec:logout
+            logout-url="/logout"
+            logout-success-url="/"
+            delete-cookies="JSESSIONID" />
+        <!-- (3) -->
+        <sec:intercept-url pattern="/login" access="permitAll" />
+        <sec:intercept-url pattern="/**" access="isAuthenticated()" />
+
+    </sec:http>
+
+    <sec:authentication-manager>
+        <!-- com.example.security.domain.service.userdetails.SampleUserDetailsService
+          is scanned by component scan with @Service -->
+        <!-- (4) -->
+        <sec:authentication-provider
+            user-service-ref="sampleUserDetailsService">
+        </sec:authentication-provider>
+    </sec:authentication-manager>
+
+    <bean id="passwordEncoder"
+        class="org.springframework.security.crypto.password.NoOpPasswordEncoder"/>
+
+
+    <!-- Put UserID into MDC -->
+
+
+</beans>

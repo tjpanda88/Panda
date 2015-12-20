@@ -12,4 +12,14 @@ public class MenuController {
     public String init() {
         return "sample/sampleForm";
     }
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "sample/loginForm";
+    }
+
+//    @RequestMapping(value = "/authenticate", method = RequestMethod.GET)
+//    public String authenticate() {
+//        return "sample/sampleForm";
+//    }
 }
